@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+/* Font Styles */
+.font-cursive {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-serif {
+  font-family: ui-serif, Cambria, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(10px) translateX(-10px);
+  }
+  75% {
+    transform: translateY(-10px) translateX(-5px);
+  }
+}
+
+/* Optional: Particle styling or subtle glow elements */
+.particle-glow {
+  background: radial-gradient(circle, rgba(34,211,238,0.15) 0%, rgba(30,58,138,0.05) 100%);
+  filter: blur(10px);
+  opacity: 0.6;
+  pointer-events: none;
+  animation: float 12s ease-in-out infinite;
+}
+
+/* Optional utility class for text stroke (used in headings sometimes) */
+.text-stroke-cyan {
+  -webkit-text-stroke: 1px #22d3ee;
+  color: transparent;
+}

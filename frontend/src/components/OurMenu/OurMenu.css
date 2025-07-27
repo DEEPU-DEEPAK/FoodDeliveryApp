@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Dancing+Script:wght@400..700&display=swap');
+
+.font-dancingscript {
+  font-family: "Dancing Script", cursive;
+}
+
+.font-cinzel {
+  font-family: "Cinzel", serif;
+}
+
+/* Card Entrance Animation */
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+.card-enter {
+  animation: cardEntrance 0.5s ease forwards;
+}
+
+/* Scrollbar (Cool Blue Theme) */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #0a0f1f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0ea5e9; /* Cyan */
+  border-radius: 4px;
+}
+
+/* Button Glow on Hover */
+.button-glow {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.button-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(34, 211, 238, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.button-glow:hover::after {
+  opacity: 1;
+}
+
+/* Utility - Blue Glowing Border on Hover */
+.glow-border-blue {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 0 transparent;
+}
+
+.glow-border-blue:hover {
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.4), 0 0 24px rgba(34, 211, 238, 0.3);
+}
