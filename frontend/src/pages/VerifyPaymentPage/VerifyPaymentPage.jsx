@@ -23,31 +23,31 @@ const VerifyPaymentPage = () => {
 
         if (success !== 'true' || !session_id) {
             if (success === 'false') {
-                navigate('/checkout', {replace: true });
+                navigate('/checkout', { replace: true });
                 return;
             }
             setStatusMsg("Invalid payment details. Please try again.");
             return;
         }
-        axios.get("http://localhost:4000/api/orders/confirm", {
+        axios.get("https://fooddeliveryapp-backend-d6ry.onrender.com/api/orders/confirm", {
             params: { session_id },
             headers: authHeaders
         })
-        .then(() => {
-            clearCart();
-            navigate('/myorders', { replace: true });
-        })
-        .catch(err => {
-            console.error('Error confirming payment:', err);
-            setStatusMsg("Failed to verify payment. Please try again.");
-            clearCart(false);
-        })
+            .then(() => {
+                clearCart();
+                navigate('/myorders', { replace: true });
+            })
+            .catch(err => {
+                console.error('Error confirming payment:', err);
+                setStatusMsg("Failed to verify payment. Please try again.");
+                clearCart(false);
+            })
     }, [search, authHeaders, clearCart, navigate]);
 
-        return (
-            <div className="min-h-screen flex items-center justify-center text-white">
-                <p>{statusMsg}</p>
-            </div>
-        )
-    }
+    return (
+        <div className="min-h-screen flex items-center justify-center text-white">
+            <p>{statusMsg}</p>
+        </div>
+    )
+}
 export default VerifyPaymentPage

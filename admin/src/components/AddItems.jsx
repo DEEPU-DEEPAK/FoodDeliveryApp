@@ -59,7 +59,7 @@ const AddItems = () => {
                 payload.append(key, val);
             });
 
-            await axios.post("http://localhost:4000/api/items", payload, {
+            await axios.post("https://fooddeliveryapp-backend-d6ry.onrender.com/api/items", payload, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
 

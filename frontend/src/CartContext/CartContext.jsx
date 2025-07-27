@@ -56,7 +56,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
-    axios.get('http://localhost:4000/api/cart', {
+    axios.get('https://fooddeliveryapp-backend-d6ry.onrender.com/api/cart', {
       withCredentials: true,
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -76,7 +76,7 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = useCallback(async (item, qty) => {
     const token = localStorage.getItem('authToken');
-    const res = await axios.post('http://localhost:4000/api/cart',
+    const res = await axios.post('https://fooddeliveryapp-backend-d6ry.onrender.com/api/cart',
       {
         itemId: item._id,
         quantity: qty,
@@ -91,7 +91,7 @@ export const CartProvider = ({ children }) => {
 
   const removeFromCart = useCallback(async _id => {
     const token = localStorage.getItem('authToken');
-    await axios.delete(`http://localhost:4000/api/cart/${_id}`,
+    await axios.delete(`https://fooddeliveryapp-backend-d6ry.onrender.com/api/cart/${_id}`,
       {
         withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
@@ -101,7 +101,7 @@ export const CartProvider = ({ children }) => {
 
   const updateQuantity = useCallback(async (_id, qty) => {
     const token = localStorage.getItem('authToken');
-    const res = await axios.put(`http://localhost:4000/api/cart/${_id}`,
+    const res = await axios.put(`https://fooddeliveryapp-backend-d6ry.onrender.com/api/cart/${_id}`,
       {
         quantity: qty,
       },
@@ -114,24 +114,24 @@ export const CartProvider = ({ children }) => {
 
   const clearCart = useCallback(async () => {
     const token = localStorage.getItem('authToken');
-    await axios.post('http://localhost:4000/api/cart/clear', 
-      {}, 
+    await axios.post('https://fooddeliveryapp-backend-d6ry.onrender.com/api/cart/clear',
+      {},
       {
-                withCredentials: true,
+        withCredentials: true,
         headers: { Authorization: `Bearer ${token}` },
       })
-      dispatch({ type: 'CLEAR_CART' });
+    dispatch({ type: 'CLEAR_CART' });
   }, []);
 
-// Total quantity of items in cart
-const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  // Total quantity of items in cart
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-// Total price of items in cart
-const totalAmount = cartItems.reduce((sum, ci) => {
-  const price = ci?.item?.price ?? 0;
-  const quantity = ci?.quantity ?? 0;
-  return sum + price * quantity;
-}, 0);
+  // Total price of items in cart
+  const totalAmount = cartItems.reduce((sum, ci) => {
+    const price = ci?.item?.price ?? 0;
+    const quantity = ci?.quantity ?? 0;
+    return sum + price * quantity;
+  }, 0);
 
 
   return (

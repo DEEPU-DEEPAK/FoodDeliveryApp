@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../CartContext/CartContext";
 import { FaMinus, FaPlus, FaTimes, FaTrash } from "react-icons/fa";
 
-const API_URL = 'http://localhost:4000';
+const API_URL = 'https://fooddeliveryapp-backend-d6ry.onrender.com';
 
 const CartPage = () => {
   const {
@@ -18,7 +18,7 @@ const CartPage = () => {
   const buildImageUrl = (path) => {
     if (!path) return '';
     return path.startsWith('http') ? path : `${API_URL}/uploads/${path.replace(/^\/uploads\//, '')}`;
-    }
+  }
 
   return (
     <div className="min-h-screen overflow-x-hidden py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[#0a1a2f] via-[#112d44] to-[#0a1a2f]">
@@ -43,46 +43,46 @@ const CartPage = () => {
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {cartItems.map(({ _id, item, quantity }) => (
-              <div
-                key={_id}
-                className="group bg-cyan-900/10 p-4 rounded-2xl border-4 border-dashed border-cyan-400 backdrop-blur-sm flex flex-col items-center gap-4 transition-all duration-300 hover:border-solid hover:shadow-xl hover:shadow-cyan-500/10 transform hover:-translate-x-1 animate-fade-in"
-              >
                 <div
-                  className="w-24 h-24 cursor-pointer overflow-hidden rounded-lg"
-                  onClick={() => setSelectedImage(buildImageUrl(item.imageUrl || item.image))}
+                  key={_id}
+                  className="group bg-cyan-900/10 p-4 rounded-2xl border-4 border-dashed border-cyan-400 backdrop-blur-sm flex flex-col items-center gap-4 transition-all duration-300 hover:border-solid hover:shadow-xl hover:shadow-cyan-500/10 transform hover:-translate-x-1 animate-fade-in"
                 >
-                  <img src={buildImageUrl(item.imageUrl || item.image)} alt={item.name} className="w-full h-full object-contain" />
-                </div>
-                <div className="w-full text-center">
-                  <h2 className="text-xl font-dancingscript text-cyan-100">{item.name}</h2>
-                  <p className="text-cyan-200 font-cinzel mt-1">₹{Number(item.price).toFixed(2)}</p>
-                </div>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => updateQuantity(_id, Math.max(1, quantity - 1))}
-                    className="w-8 h-8 rounded-full bg-cyan-800/40 flex items-center justify-center hover:bg-cyan-700/50 transition-all duration-200 active:scale-95"
+                  <div
+                    className="w-24 h-24 cursor-pointer overflow-hidden rounded-lg"
+                    onClick={() => setSelectedImage(buildImageUrl(item.imageUrl || item.image))}
                   >
-                    <FaMinus className="w-4 h-4 text-cyan-100" />
-                  </button>
-                  <span className="w-8 text-center text-cyan-100 font-cinzel">{quantity}</span>
-                  <button
-                    onClick={() => updateQuantity(_id, quantity + 1)}
-                    className="w-8 h-8 rounded-full bg-cyan-800/40 flex items-center justify-center hover:bg-cyan-700/50 transition-all duration-200 active:scale-95"
-                  >
-                    <FaPlus className="w-4 h-4 text-cyan-100" />
-                  </button>
+                    <img src={buildImageUrl(item.imageUrl || item.image)} alt={item.name} className="w-full h-full object-contain" />
+                  </div>
+                  <div className="w-full text-center">
+                    <h2 className="text-xl font-dancingscript text-cyan-100">{item.name}</h2>
+                    <p className="text-cyan-200 font-cinzel mt-1">₹{Number(item.price).toFixed(2)}</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => updateQuantity(_id, Math.max(1, quantity - 1))}
+                      className="w-8 h-8 rounded-full bg-cyan-800/40 flex items-center justify-center hover:bg-cyan-700/50 transition-all duration-200 active:scale-95"
+                    >
+                      <FaMinus className="w-4 h-4 text-cyan-100" />
+                    </button>
+                    <span className="w-8 text-center text-cyan-100 font-cinzel">{quantity}</span>
+                    <button
+                      onClick={() => updateQuantity(_id, quantity + 1)}
+                      className="w-8 h-8 rounded-full bg-cyan-800/40 flex items-center justify-center hover:bg-cyan-700/50 transition-all duration-200 active:scale-95"
+                    >
+                      <FaPlus className="w-4 h-4 text-cyan-100" />
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-between w-full">
+                    <button
+                      onClick={() => removeFromCart(_id)}
+                      className="bg-cyan-800/40 px-3 py-1.5 rounded-full font-cinzel text-sm uppercase transition-all duration-300 hover:bg-cyan-700/60 active:scale-95 flex items-center gap-2 border border-cyan-700/40"
+                    >
+                      <FaTrash className="w-4 h-4 text-cyan-100" />
+                      <span className="text-cyan-100">Remove</span>
+                    </button>
+                    <p className="text-sm font-dancingscript text-cyan-300">₹{Number(item.price * quantity).toFixed(2)}</p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between w-full">
-                  <button
-                    onClick={() => removeFromCart(_id)}
-                    className="bg-cyan-800/40 px-3 py-1.5 rounded-full font-cinzel text-sm uppercase transition-all duration-300 hover:bg-cyan-700/60 active:scale-95 flex items-center gap-2 border border-cyan-700/40"
-                  >
-                    <FaTrash className="w-4 h-4 text-cyan-100" />
-                    <span className="text-cyan-100">Remove</span>
-                  </button>
-                  <p className="text-sm font-dancingscript text-cyan-300">₹{Number(item.price * quantity).toFixed(2)}</p>
-                </div>
-              </div>
               ))}
             </div>
 

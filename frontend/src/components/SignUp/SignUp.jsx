@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
-const url = "http://localhost:4000";
+const url = "https://fooddeliveryapp-backend-d6ry.onrender.com";
 
 const SignUp = () => {
   const [showToast, setShowToast] = useState({
@@ -40,34 +40,34 @@ const SignUp = () => {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await axios.post(`${url}/api/user/register`, formData);
-    if (res.status >= 200 && res.status < 300 && res.data.success) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(`${url}/api/user/register`, formData);
+      if (res.status >= 200 && res.status < 300 && res.data.success) {
+        setShowToast({
+          visible: true,
+          message: "Account Created Successfully! Redirecting to login...",
+          icon: <FaCheckCircle />,
+        });
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+
+        return;
+      }
+      throw new Error(res.data.message || "Sign Up Failed");
+    } catch (error) {
+      const msg =
+        error.response?.data?.message || error.message || "An error occurred";
       setShowToast({
         visible: true,
-        message: "Account Created Successfully! Redirecting to login...",
-        icon: <FaCheckCircle />,
+        message: msg,
+        icon: <FaExclamationCircle />,
       });
-
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
-
-      return;
     }
-    throw new Error(res.data.message || "Sign Up Failed");
-  } catch (error) {
-    const msg =
-      error.response?.data?.message || error.message || "An error occurred";
-    setShowToast({
-      visible: true,
-      message: msg,
-      icon: <FaExclamationCircle />,
-    });
-  }
-};
+  };
 
 
   const AwesomeToast = ({ message, icon }) => (

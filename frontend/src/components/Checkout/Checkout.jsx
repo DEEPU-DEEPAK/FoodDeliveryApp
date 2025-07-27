@@ -31,7 +31,7 @@ const Checkout = () => {
             setLoading(true);
 
             if (paymentStatus === 'success' && sessionId) {
-                axios.post('http://localhost:4000/api/orders/confirm', { sessionId }, { headers: authHeaders })
+                axios.post('https://fooddeliveryapp-backend-d6ry.onrender.com/api/orders/confirm', { sessionId }, { headers: authHeaders })
                     .then(({ data }) => {
                         clearCart();
                         navigate('/myorders', { state: { order: data } });

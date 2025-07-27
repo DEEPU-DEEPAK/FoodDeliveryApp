@@ -11,7 +11,7 @@ import { iconClass, inputBase } from '../../assets/dummydata';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const url = 'http://localhost:4000'
+const url = 'https://fooddeliveryapp-backend-d6ry.onrender.com'
 
 const Login = ({ onLoginSuccess, onClose }) => {
   const [showToast, setShowToast] = useState({ visible: false, message: "", isError: false });
@@ -82,11 +82,11 @@ const Login = ({ onLoginSuccess, onClose }) => {
     <div className="space-y-6 relative">
       {/* Toast Notification */}
       <div className={`fixed top-4 right-4 z-50 transition-all duration-300 transform 
-          ${showToast.visible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0' }`}>
-        <div className={`px-4 py-3 rounded-md shadow-lg flex items-center gap-2 text-sm ${showToast.isError ? 'bg-red-600 text-white':
-          'bg-green-400 text-white' }`}>
-            
-            </div>    
+          ${showToast.visible ? 'translate-y-0 opacity-100' : '-translate-y-20 opacity-0'}`}>
+        <div className={`px-4 py-3 rounded-md shadow-lg flex items-center gap-2 text-sm ${showToast.isError ? 'bg-red-600 text-white' :
+          'bg-green-400 text-white'}`}>
+
+        </div>
         <div className="bg-green-600 text-white px-4 py-3 rounded-md shadow-lg flex items-center gap-2 text-sm">
           <FaCheckCircle className="flex-shrink-0" />
           {/* <span>Login Successful!</span> */}

@@ -18,9 +18,9 @@ const SpecialOffer = () => {
   const { addToCart, updateQuantity, removeFromCart, cartItems } = useCart();
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/items')
-    .then(res => setItems(res.data.items ?? res.data))
-    .catch(err => console.error(err));
+    axios.get('https://fooddeliveryapp-backend-d6ry.onrender.com/api/items')
+      .then(res => setItems(res.data.items ?? res.data))
+      .catch(err => console.error(err));
   }, []);
 
   const displayList = Array.isArray(items) ? items.slice(0, showAll ? 8 : 4) : [];
@@ -40,7 +40,7 @@ const SpecialOffer = () => {
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {displayList.map(item=> {
+          {displayList.map(item => {
             const cartItem = cartItems.find((ci) => ci.item._id === item._id);
             const qty = cartItem ? cartItem.quantity : 0;
             const cartId = cartItem?._id

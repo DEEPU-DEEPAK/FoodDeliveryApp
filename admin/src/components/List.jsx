@@ -9,7 +9,7 @@ const List = () => {
   useEffect(() => {
     const fetchItem = async () => {
       try {
-        const { data } = await axios.get('http://localhost:4000/api/items')
+        const { data } = await axios.get('https://fooddeliveryapp-backend-d6ry.onrender.com/api/items')
         setItems(data)
       } catch (err) {
         console.error("Error Fetching Item:", err)
@@ -23,7 +23,7 @@ const List = () => {
   const handleDelete = async (itemId) => {
     if (!window.confirm("Are you sure you want to DELETE this item?")) return
     try {
-      await axios.delete(`http://localhost:4000/api/items/${itemId}`)
+      await axios.delete(`https://fooddeliveryapp-backend-d6ry.onrender.com/api/items/${itemId}`)
       setItems(prev => prev.filter(item => item._id !== itemId))
       console.log('Deleted item Id: ', itemId)
     } catch (err) {
